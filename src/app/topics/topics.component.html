@@ -6,16 +6,18 @@
           <mat-panel-title>
             {{topic.title}}
           </mat-panel-title>
-          <mat-panel-description>
-            posted by {{topic.user.name}}
-          </mat-panel-description>
         </mat-expansion-panel-header>
-        <mat-form-field>
-          <input matInput placeholder="First name">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Age">
-        </mat-form-field>
+        <mat-panel-description>
+          {{topic.tag ? 'Tags: ' + topic.tag : null}}
+        </mat-panel-description>
+        <mat-panel-description>
+          {{topic?.description}}
+        </mat-panel-description>
+        <mat-panel-description>
+          posted by {{topic.user?.name}} at {{topic.created | date: 'dd/MM/yyyy'}}
+        </mat-panel-description>
+        <br>
+        <button mat-raised-button (click)="goToMessages(topic)">View messages</button>
       </mat-expansion-panel>
     </mat-accordion>
 
@@ -27,29 +29,34 @@
           <mat-panel-title>
             {{topic.title}}
           </mat-panel-title>
-          <mat-panel-description>
-            posted by me
-          </mat-panel-description>
         </mat-expansion-panel-header>
+        <mat-panel-description>
+          {{topic.tag ? 'Tags: ' + topic.tag : null}}
+        </mat-panel-description>
+        <mat-panel-description>
+          {{topic?.description}}
+        </mat-panel-description>
+        <mat-panel-description>
+          posted by me at {{topic.created | date: 'dd/MM/yyyy'}}
+        </mat-panel-description>
+        <br>
         <button mat-raised-button (click)="goToMessages(topic)">View messages</button>
       </mat-expansion-panel>
+
     </mat-accordion>
   </mat-tab>
   <mat-tab label="Create Topic">
-      <div class="topic-container">
-          <mat-form-field>
-            <input matInput placeholder="Input">
-          </mat-form-field>
-        
-          <mat-form-field>
-            <textarea matInput placeholder="Textarea"></textarea>
-          </mat-form-field>
-        
-          <mat-form-field>
-            <mat-select placeholder="Select">
-              <mat-option value="option">Option</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+    <div class="topic-container">
+      <mat-form-field>
+        <input matInput placeholder="Title" [(ngModel)]="title">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Tag" [(ngModel)]="tag">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="Description" [(ngModel)]="description"></textarea>
+      </mat-form-field>
+      <button mat-raised-button (click)="create()">Submit</button>
+    </div>
   </mat-tab>
 </mat-tab-group>

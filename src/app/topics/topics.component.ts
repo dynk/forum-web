@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import {FormControl} from '@angular/forms';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
@@ -13,7 +14,13 @@ export class TopicsComponent implements OnInit {
   user: any;
   allTopics: any;
   myTopics: any;
-  constructor(private http: Http, private router: Router) { }
+  title: string;
+  tag: string;
+  description: string;
+  constructor(
+    private http: Http,
+    private router: Router,
+    public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.user = JSON.parse(window.localStorage.getItem('user'));
@@ -21,7 +28,7 @@ export class TopicsComponent implements OnInit {
     this.http.get(`${this.baseUrl}/topics`)
     .subscribe(
       res => {
-        // this.allTopics = res.json();
+        this.allTopics = res.json();
         console.log(this.allTopics);
       },
       err => {
@@ -42,6 +49,27 @@ export class TopicsComponent implements OnInit {
   goToMessages(topic) {
     window.localStorage.setItem('topic', JSON.stringify(topic));
     this.router.navigate([`messages`]);
+  }
+  create() {
+    this.http.post(
+      `${this.baseUrl}/users/${this.user._id}/topics`,
+      { title: this.title, tag: this.tag, description: this.description })
+    .subscribe(
+    res => {
+      this.openSnackBar('Topic created!', 'Success!');
+      // this.router.navigate([`topics`]);
+    },
+    err => {
+      this.openSnackBar(err.json(), 'Error');
+      console.log(err.json());
+    }
+    );
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

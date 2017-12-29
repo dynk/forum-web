@@ -1,11 +1,15 @@
 <mat-card>
-    <mat-card-title>Teste</mat-card-title>
+  <mat-card-title>{{topic.title}}</mat-card-title>
 
   <mat-list>
-      <mat-list-item *ngFor="let message of messages">
-        <h3 matLine> {{message.title}} </h3>
-        <p matLine> {{message.description}}</p>
-        <p matLine class="demo-2"> {{message.user.name}} </p>
-      </mat-list-item>
-    </mat-list>
-  </mat-card>
+    <mat-list-item *ngFor="let message of messages">
+      <h3 matLine> {{message.user.name}} at {{message.created | date: 'dd/MM/yyyy'}} :</h3>
+      <p matLine> {{message.description}}</p>
+    </mat-list-item>
+  </mat-list>
+  <mat-form-field class="message-full-width">
+    <textarea matInput placeholder="Leave a comment" [(ngModel)]="description"></textarea>
+  </mat-form-field>
+  <button mat-raised-button (click)="createMessage()">Comment</button>
+  <button mat-raised-button (click)="goToTopics()">Back</button>
+</mat-card>
