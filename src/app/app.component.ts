@@ -16,15 +16,18 @@ export class AppComponent {
 
   myControl: FormControl = new FormControl();
   constructor(private http: Http, private router: Router) {
-    this.isLogged = false;
+    // TODO
+    this.isLogged = true;
   }
   private login() {
     this.http.post(this.url, {email: this.email, password: this.password})
     .subscribe(
       res => {
-        console.log(res.json());
+        const response = res.json();
+        console.log(response);
         this.isLogged = true;
-        window.localStorage.setItem('token', res.json());
+        window.localStorage.setItem('token', response.token);
+        window.localStorage.setItem('user', JSON.stringify(response.user));
         this.router.navigate([`topics`]);
       },
       err => {
