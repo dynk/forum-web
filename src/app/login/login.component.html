@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-title>Login</mat-card-title>
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Email" [(ngModel)]="email">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Password" [(ngModel)]="password">
+    </mat-form-field>
+    <button mat-button (click)="login()">Login</button>
+  </div>
+</mat-card>
+<br>
+
+<mat-card>
+  <mat-card-title>Create Account</mat-card-title>
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Name" [(ngModel)]="newName">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email" [(ngModel)]="newEmail">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Password" [(ngModel)]="newPassword">
+    </mat-form-field>
+    <button mat-button (click)="signin()">Sign In</button>
+  </div>
+</mat-card>
+
+
+
+<router-outlet></router-outlet>

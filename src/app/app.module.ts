@@ -9,16 +9,21 @@ import { AppComponent } from './app.component';
 import {SharedModule} from './shared/modules/shared.module';
 import { TopicsComponent } from './topics/topics.component';
 import { MessagesComponent } from './messages/messages.component';
+import { LoginComponent } from './login/login.component';
+
 // import { Bro } from '@angular/platform/animations';
 
 const appRoutes: Routes = [
   { path: 'topics', component: TopicsComponent },
-  { path: 'messages', component: MessagesComponent }
+  { path: 'messages', component: MessagesComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', component: LoginComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     TopicsComponent,
     MessagesComponent
   ],
