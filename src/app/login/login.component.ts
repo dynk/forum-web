@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl} from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
+import { FormControl } from '@angular/forms';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 
@@ -19,13 +20,16 @@ export class LoginComponent implements OnInit {
   baseUrl = 'http://localhost:3000';
 
   myControl: FormControl = new FormControl();
-  constructor(private http: Http, private router: Router) {
-  }
+  constructor(
+    private http: Http,
+    private router: Router,
+    public snackBar: MatSnackBar) { }
+
   ngOnInit() {
   }
   private login() {
-    this.http.post(`${this.baseUrl}/users/login`, {email: this.email, password: this.password})
-    .subscribe(
+    this.http.post(`${this.baseUrl}/users/login`, { email: this.email, password: this.password })
+      .subscribe(
       res => {
         const response = res.json();
         console.log(response);
@@ -34,13 +38,14 @@ export class LoginComponent implements OnInit {
         this.router.navigate([`topics`]);
       },
       err => {
-        console.log(err);
+        this.openSnackBar(err.json(), 'Error');
+        console.log(err.json());
       }
-    );
+      );
   }
   signin() {
-    this.http.post(`${this.baseUrl}/users`, {name: this.newName, email: this.newEmail, password: this.newPassword})
-    .subscribe(
+    this.http.post(`${this.baseUrl}/users`, { name: this.newName, email: this.newEmail, password: this.newPassword })
+      .subscribe(
       res => {
         const response = res.json();
         console.log(response);
@@ -49,9 +54,14 @@ export class LoginComponent implements OnInit {
         this.router.navigate([`topics`]);
       },
       err => {
+        this.openSnackBar(err.json(), 'Error');
         console.log(err);
       }
-    );
+      );
   }
-
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 }
