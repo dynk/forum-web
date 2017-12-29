@@ -1,5 +1,5 @@
 
-<mat-card>
+<mat-card *ngIf="!isLogged">
   Login
   <div class="example-container">
     <mat-form-field>
@@ -14,3 +14,4 @@
 
 </mat-card>
 
+<router-outlet></router-outlet>
