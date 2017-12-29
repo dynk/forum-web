@@ -8,16 +8,19 @@ import { AppComponent } from './app.component';
 // import { AppRoutingModule } from './app.routing.module';
 import {SharedModule} from './shared/modules/shared.module';
 import { TopicsComponent } from './topics/topics.component';
+import { MessagesComponent } from './messages/messages.component';
 // import { Bro } from '@angular/platform/animations';
 
 const appRoutes: Routes = [
-  { path: 'topics', component: TopicsComponent }
+  { path: 'topics', component: TopicsComponent },
+  { path: 'messages', component: MessagesComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopicsComponent
+    TopicsComponent,
+    MessagesComponent
   ],
   imports: [
     // AppRoutingModule,

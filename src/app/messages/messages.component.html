@@ -1,0 +1,11 @@
+<mat-card>
+    <mat-card-title>Teste</mat-card-title>
+
+  <mat-list>
+      <mat-list-item *ngFor="let message of messages">
+        <h3 matLine> {{message.title}} </h3>
+        <p matLine> {{message.description}}</p>
+        <p matLine class="demo-2"> {{message.user.name}} </p>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>

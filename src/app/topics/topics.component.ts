@@ -39,5 +39,9 @@ export class TopicsComponent implements OnInit {
       }
     );
   }
+  goToMessages(topic) {
+    window.localStorage.setItem('topic', JSON.stringify(topic));
+    this.router.navigate([`messages`]);
+  }
 
 }
