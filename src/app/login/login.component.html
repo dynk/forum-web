@@ -6,8 +6,9 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Password" [(ngModel)]="password">
-    </mat-form-field>
+        <input matInput placeholder="Enter your password" [(ngModel)]="password" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field>
     <button mat-button (click)="login()">Login</button>
   </div>
 </mat-card>
@@ -24,8 +25,9 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Password" [(ngModel)]="newPassword">
-    </mat-form-field>
+        <input matInput placeholder="Enter your password" [(ngModel)]="newPassword" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field>
     <button mat-button (click)="signin()">Sign In</button>
   </div>
 </mat-card>

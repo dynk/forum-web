@@ -1,0 +1,8 @@
+.topic-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .topic-container > * {
+    width: 100%;
+  }

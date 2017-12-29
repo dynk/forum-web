@@ -1,6 +1,5 @@
 <mat-tab-group>
   <mat-tab label="All Topics">
-
     <mat-accordion>
       <mat-expansion-panel *ngFor="let topic of allTopics">
         <mat-expansion-panel-header>
@@ -11,11 +10,9 @@
             posted by {{topic.user.name}}
           </mat-panel-description>
         </mat-expansion-panel-header>
-
         <mat-form-field>
           <input matInput placeholder="First name">
         </mat-form-field>
-
         <mat-form-field>
           <input matInput placeholder="Age">
         </mat-form-field>
@@ -37,5 +34,22 @@
         <button mat-raised-button (click)="goToMessages(topic)">View messages</button>
       </mat-expansion-panel>
     </mat-accordion>
+  </mat-tab>
+  <mat-tab label="Create Topic">
+      <div class="topic-container">
+          <mat-form-field>
+            <input matInput placeholder="Input">
+          </mat-form-field>
+        
+          <mat-form-field>
+            <textarea matInput placeholder="Textarea"></textarea>
+          </mat-form-field>
+        
+          <mat-form-field>
+            <mat-select placeholder="Select">
+              <mat-option value="option">Option</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
   </mat-tab>
 </mat-tab-group>

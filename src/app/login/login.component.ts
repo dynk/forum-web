@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.less']
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   newPassword: string;
   newName: string;
   baseUrl = 'http://localhost:3000';
+  hide = true;
 
   myControl: FormControl = new FormControl();
   constructor(
