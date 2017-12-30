@@ -26,16 +26,7 @@ export class MessagesComponent implements OnInit {
     this.token = window.localStorage.getItem('token');
     this.topic = JSON.parse(window.localStorage.getItem('topic'));
     this.user = JSON.parse(window.localStorage.getItem('user'));
-    this.http.get(`${this.baseUrl}/topics/${this.topic._id}/messages?token=${this.token }`)
-    .subscribe(
-      res => {
-        this.messages = res.json();
-        console.log(this.messages);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    this.fetch();
   }
   goToTopics() {
     this.router.navigate([`topics`]);
@@ -48,12 +39,26 @@ export class MessagesComponent implements OnInit {
     res => {
       this.openSnackBar('Message created!', 'Success!');
       delete this.description;
+      this.fetch();
       // this.router.navigate([`topics`]);
     },
     err => {
       this.openSnackBar(err.json(), 'Error');
       console.log(err.json());
     }
+    );
+  }
+
+  fetch() {
+    this.http.get(`${this.baseUrl}/topics/${this.topic._id}/messages?token=${this.token }`)
+    .subscribe(
+      res => {
+        this.messages = res.json();
+        console.log(this.messages);
+      },
+      err => {
+        console.log(err);
+      }
     );
   }
 
