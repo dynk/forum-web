@@ -1,36 +1,44 @@
-<mat-card>
-  <mat-card-title>Login</mat-card-title>
-  <div class="example-container">
-    <mat-form-field>
-      <input matInput placeholder="Email" [(ngModel)]="email">
-    </mat-form-field>
+<div class="container">
+  <mat-card>
+    <mat-card-title>Login</mat-card-title>
+    <div class="example-container">
+      <br>
 
-    <mat-form-field>
+      <p>Please enter your credentials</p>
+      <mat-form-field>
+        <input matInput placeholder="Email" [(ngModel)]="email">
+      </mat-form-field>
+
+      <mat-form-field>
         <input matInput placeholder="Enter your password" [(ngModel)]="password" [type]="hide ? 'password' : 'text'">
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
       </mat-form-field>
-    <button mat-button (click)="login()">Login</button>
-  </div>
-</mat-card>
-<br>
+      
 
-<mat-card>
-  <mat-card-title>Create Account</mat-card-title>
-  <div class="example-container">
-    <mat-form-field>
-      <input matInput placeholder="Name" [(ngModel)]="newName">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Email" [(ngModel)]="newEmail">
-    </mat-form-field>
+      <button mat-button (click)="login()">Login</button>
+    </div>
+  </mat-card>
 
-    <mat-form-field>
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <mat-card>
+    <mat-card-title>Create Account</mat-card-title>
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Name" [(ngModel)]="newName">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Email" [(ngModel)]="newEmail">
+      </mat-form-field>
+
+      <mat-form-field>
         <input matInput placeholder="Enter your password" [(ngModel)]="newPassword" [type]="hide ? 'password' : 'text'">
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
       </mat-form-field>
-    <button mat-button (click)="signin()">Sign In</button>
-  </div>
-</mat-card>
-
+      <button mat-button (click)="signin()">Sign In</button>
+    </div>
+  </mat-card>
+</div>
 
 <router-outlet></router-outlet>

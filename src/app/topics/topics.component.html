@@ -1,6 +1,7 @@
 <mat-tab-group>
   <mat-tab label="All Topics">
     <mat-accordion>
+      <!-- <p *ngIf="myTopics.length == 0">There are no topics! </p> -->
       <mat-expansion-panel *ngFor="let topic of allTopics">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -24,6 +25,7 @@
   </mat-tab>
   <mat-tab label="My Topics">
     <mat-accordion>
+      <!-- <p *ngIf="myTopics.length == 0">You have no topics, go to 'Crete Topic' tab to create your firs topic! </p> -->
       <mat-expansion-panel *ngFor="let topic of myTopics">
         <mat-expansion-panel-header>
           <mat-panel-title>

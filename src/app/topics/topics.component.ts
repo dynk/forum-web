@@ -17,6 +17,7 @@ export class TopicsComponent implements OnInit {
   title: string;
   tag: string;
   description: string;
+  token: string;
   constructor(
     private http: Http,
     private router: Router,
@@ -24,18 +25,20 @@ export class TopicsComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(window.localStorage.getItem('user'));
+    this.token = window.localStorage.getItem('token');
     console.log(this.user);
-    this.http.get(`${this.baseUrl}/topics`)
+    this.http.get(`${this.baseUrl}/topics?token=${this.token}`)
     .subscribe(
       res => {
         this.allTopics = res.json();
         console.log(this.allTopics);
       },
       err => {
+        this.openSnackBar(err.json(), 'Error');
         console.log(err);
       }
     );
-    this.http.get(`${this.baseUrl}/users/${this.user._id}/topics`)
+    this.http.get(`${this.baseUrl}/users/${this.user._id}/topics?token=${this.token}`)
     .subscribe(
       res => {
         this.myTopics = res.json();
@@ -51,13 +54,16 @@ export class TopicsComponent implements OnInit {
     this.router.navigate([`messages`]);
   }
   create() {
+    console.log({ title: this.title, tag: this.tag, description: this.description });
     this.http.post(
-      `${this.baseUrl}/users/${this.user._id}/topics`,
+      `${this.baseUrl}/users/${this.user._id}/topics?token=${this.token}`,
       { title: this.title, tag: this.tag, description: this.description })
     .subscribe(
     res => {
       this.openSnackBar('Topic created!', 'Success!');
-      // this.router.navigate([`topics`]);
+      delete this.title;
+      delete this.tag;
+      delete this.description;
     },
     err => {
       this.openSnackBar(err.json(), 'Error');

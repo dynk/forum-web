@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-title>{{topic.title}}</mat-card-title>
-
+  <p>{{topic.description}}</p>
   <mat-list>
     <mat-list-item *ngFor="let message of messages">
       <h3 matLine> {{message.user.name}} at {{message.created | date: 'dd/MM/yyyy'}} :</h3>

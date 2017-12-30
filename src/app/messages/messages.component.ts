@@ -15,6 +15,7 @@ export class MessagesComponent implements OnInit {
   user: any;
   messages: any;
   description: string;
+  token: string;
   baseUrl = 'http://localhost:3000';
   constructor(
     private http: Http,
@@ -22,9 +23,10 @@ export class MessagesComponent implements OnInit {
     public snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    this.token = window.localStorage.getItem('token');
     this.topic = JSON.parse(window.localStorage.getItem('topic'));
     this.user = JSON.parse(window.localStorage.getItem('user'));
-    this.http.get(`${this.baseUrl}/topics/${this.topic._id}/messages`)
+    this.http.get(`${this.baseUrl}/topics/${this.topic._id}/messages?token=${this.token }`)
     .subscribe(
       res => {
         this.messages = res.json();
@@ -40,7 +42,7 @@ export class MessagesComponent implements OnInit {
   }
   createMessage() {
     this.http.post(
-      `${this.baseUrl}/users/${this.user._id}/topics/${this.topic._id}/messages`,
+      `${this.baseUrl}/users/${this.user._id}/topics/${this.topic._id}/messages?token=${this.token }`,
       { description: this.description})
     .subscribe(
     res => {
